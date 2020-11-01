@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `museum`.`FavoriteDetails` (
     REFERENCES `museum`.`Visitor` (`visitorNo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `artifactName`
+  CONSTRAINT `artifactName_FD`
 	FOREIGN KEY (`artifactName`)
 	REFERENCES `museum`.`ArtifactDetails` (`name`)
     ON DELETE NO ACTION
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `museum`. `Theme` (
   `artifactName` VARCHAR(64) NOT NULL,
   PRIMARY KEY (`artifactName`),
   INDEX `artifactName_idx` (`artifactName` ASC),
-  CONSTRAINT `artifactName`
+  CONSTRAINT `artifactName_Theme`
 	FOREIGN KEY (`artifactName`)
     REFERENCES `museum`.`ArtifactDetails` (`name`)
     ON DELETE NO ACTION
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `museum`. `Country` (
   `artifactName` VARCHAR(64) NOT NULL,
   PRIMARY KEY (`artifactName`),
   INDEX `artifactName_idx` (`artifactName` ASC),
-  CONSTRAINT `artifactName`
+  CONSTRAINT `artifactName_Country`
 	FOREIGN KEY (`artifactName`)
     REFERENCES `museum`.`ArtifactDetails` (`name`)
     ON DELETE NO ACTION
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `museum`. `Time` (
   `artifactName` VARCHAR(64) NOT NULL,
   PRIMARY KEY (`artifactName`),
   INDEX `artifactName_idx` (`artifactName` ASC),
-  CONSTRAINT `artifactName`
+  CONSTRAINT `artifactName_Time` -- constraint name can't be same as primary key name
 	FOREIGN KEY (`artifactName`)
     REFERENCES `museum`.`ArtifactDetails` (`name`)
     ON DELETE NO ACTION
@@ -107,12 +107,12 @@ CREATE TABLE IF NOT EXISTS `museum`. `AdmissionTicket` (
   PRIMARY KEY (`visitorNo`, `museumNo`),
   INDEX `visitorNo_idx` (`visitorNo` ASC),
   INDEX `museumNo_idx` (`museumNo` ASC),
-  CONSTRAINT `museumNo`
+  CONSTRAINT `musNo`
     FOREIGN KEY (`museumNo`)
     REFERENCES `museum`.`Museum` (`museumNo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `visitorNo`
+  CONSTRAINT `visNo`
 	FOREIGN KEY (`visitorNo`)
     REFERENCES `museum`.`Visitor` (`visitorNo`)
     ON DELETE NO ACTION
