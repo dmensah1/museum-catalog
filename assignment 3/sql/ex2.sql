@@ -9,7 +9,7 @@ USE `museum` ;
 CREATE TABLE IF NOT EXISTS `museum`.`Curator` (
   `curatorNo` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(64) NOT NULL,
-  `location` VARCHAR(64),
+  `location` VARCHAR(64) NULL,
   PRIMARY KEY (`curatorNo`))
 ENGINE = InnoDB;
 
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `museum`.`Museum` (
   `name` VARCHAR(64) NOT NULL,
   `city` VARCHAR(64) NOT NULL,
   `state` VARCHAR(64) NOT NULL,
-  `capacity` INT(5) NOT NULL,
+  `capacity` INT(5),
   PRIMARY KEY (`museumNo`))
 ENGINE = InnoDB;
 
@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `museum`.`Visitor` (
   `lastName` VARCHAR(64) NOT NULL,
   `email` VARCHAR(64) NOT NULL,
   `password` VARCHAR(64) NOT NULL,
-  `numVisits` INT(4) NOT NULL,
-  `museumsVisited` VARCHAR(128) NOT NULL,
+  `numVisits` INT(4) NULL,
+  `museumsVisited` VARCHAR(128) NULL,
   PRIMARY KEY (`visitorNo`),
   INDEX `visitorNo_idx` (`visitorNo` ASC))
 ENGINE = InnoDB;
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `museum`.`FavoriteDetails` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `museum`. `Theme` (
-  `artifactTheme` VARCHAR(64) NOT NULL,
+  `artifactTheme` VARCHAR(64),
   `artifactName` VARCHAR(64) NOT NULL,
   PRIMARY KEY (`artifactName`),
   INDEX `artifactName_idx` (`artifactName` ASC),
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `museum`. `Theme` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `museum`. `Country` (
-  `artifactCountry` VARCHAR(64) NOT NULL,
+  `artifactCountry` VARCHAR(64),
   `artifactName` VARCHAR(64) NOT NULL,
   PRIMARY KEY (`artifactName`),
   INDEX `artifactName_idx` (`artifactName` ASC),
@@ -87,7 +87,7 @@ ENGINE = InnoDB;
 
 
 CREATE TABLE IF NOT EXISTS `museum`. `Time` (
-  `timePeriod` VARCHAR(64) NOT NULL, -- left as a char since time period wont be an exact date
+  `timePeriod` VARCHAR(64), -- left as a char since time period wont be an exact date
   `artifactName` VARCHAR(64) NOT NULL,
   PRIMARY KEY (`artifactName`),
   INDEX `artifactName_idx` (`artifactName` ASC),
@@ -145,9 +145,9 @@ CREATE TABLE IF NOT EXISTS `museum`. `Artifact` (
   `artifactNo` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(64) NOT NULL,
   `description` VARCHAR(128) NOT NULL,
-  `country` VARCHAR(64) NOT NULL,
-  `theme` VARCHAR(64) NOT NULL,
-  `timePeriod` VARCHAR(64) NOT NULL,
+  `country` VARCHAR(64),
+  `theme` VARCHAR(64),
+  `timePeriod` VARCHAR(64),
   PRIMARY KEY (`artifactNo`),
   CONSTRAINT `theme`
 	FOREIGN KEY (`theme`)
