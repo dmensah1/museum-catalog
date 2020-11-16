@@ -43,6 +43,7 @@ artifactThemes = []
 artifactCountries = []
 artifactTimes = []
 admissionTickets = []
+favoriteDetails = []
 
 # arrays to hold formatted dates going into the db
 startDates = []
@@ -358,6 +359,19 @@ def buildAdmissionTickets(limit):
         if ticket not in admissionTickets:
             admissionTickets.append(ticket)
 
+def buildFavoriteDetails(limit):
+    initializeStartDates(limit)
+    i = 0
+
+    while i < limit:
+        visitorIdx = randomIndex(0, len(visitorNo))
+        artIdx = randomIndex(0, len(artifactNameID))
+
+        favorite = [startDates[i], visitorNo[visitorIdx], artifactNameID[artIdx]]
+        i += 1
+
+        if favorite not in favoriteDetails:
+            favoriteDetails.append(favorite)
 
 
 # connecting to the mysql db
@@ -478,8 +492,14 @@ for detail in expoDetails:
     mycursor.execute(sql, detail)
     mydb.commit()
 
-buildAdmissionTickets(200)
+buildAdmissionTickets(150)
 for ticket in admissionTickets:
     sql = "INSERT INTO AdmissionTicket (date, admissionPrice, museumNo, visitorNo) VALUES (%s, %s, %s, %s)"
     mycursor.execute(sql, ticket)
+    mydb.commit()
+
+buildFavoriteDetails(200)
+for detail in favoriteDetails:
+    sql = "INSERT INTO FavoriteDetails (dateAdded, visitorNo, artifactName) VALUES (%s, %s, %s)"
+    mycursor.execute(sql, detail)
     mydb.commit()
