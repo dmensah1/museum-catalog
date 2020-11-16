@@ -1,0 +1,69 @@
+Toronto, ON
+Montreal, QC
+Halifax, NS
+Vancouver, BC
+Calgary, AB
+Ottawa, ON
+Edmonton, AB
+Mississauga, ON
+Hamilton, ON
+London, ON
+St John's, NLD
+New York City, NY
+Los Angeles, CA
+Houston, TX
+Chicago, IL
+Pheonix, AZ
+San Antonio, TX
+San Diego, CA
+Jacksonville, FL
+Columbus, OH
+Seattle, WA
+Denver, CO
+Memphis, TEN
+Detroit, MI
+Miami, FL
+Long Beach, CA
+Tampa, FL
+Cleveland, OH
+Honolulu, HI
+Paris, FRA
+Moscow, RUS
+Seoul, SK
+London, UK
+Tokyo, JPN
+Amsterdam, NED
+Stockholm, SWE
+Milan, ITA
+Brussels, BEL
+Shanghai, CHN
+San Francisco, CA
+Chengdu, CHN
+Barcelona, ESP
+Real Madrid, ESP
+Sevilla, ESP
+Dubai, UAE
+Delhi, IND
+Sao Paulo, BRA
+Mexico City, MEX
+Cairo, EGY
+Mumbai, IND
+Beijing, CHN
+Osaka, JPN
+Karachi, PKS
+Beunos Aires, ARG
+Istanbul, TUR
+Ankara, TUR
+Kolkata, IND
+Rio de Janeiro, BRA
+Tianjin, CHN
+Lagos, NGA
+Baghdad, IRQ
+Singapore, SNG
+Fukuoka, JPN
+Johannesburg, SA
+Dalian, CHN
+Washington, DC
+Jinan, CHN
+Guadalajara, MEX
+Cozumel, MEX

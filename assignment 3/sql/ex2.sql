@@ -10,33 +10,31 @@ CREATE TABLE IF NOT EXISTS `museum`.`Curator` (
   `curatorNo` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(64) NOT NULL,
   `location` VARCHAR(64) NULL,
+  `theme` VARCHAR(64),
   PRIMARY KEY (`curatorNo`))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `museum`.`Museum` (
   `museumNo` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(64) NOT NULL,
-  `city` VARCHAR(64) NOT NULL,
-  `state` VARCHAR(64) NOT NULL,
+  `location` VARCHAR(64) NOT NULL,
   `capacity` INT(5),
   PRIMARY KEY (`museumNo`))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `museum`.`Visitor` (
   `visitorNo` INT NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(64) NOT NULL,
-  `lastName` VARCHAR(64) NOT NULL,
+  `name` VARCHAR(64) NOT NULL,
   `email` VARCHAR(64) NOT NULL,
   `password` VARCHAR(64) NOT NULL,
-  `numVisits` INT(4) NULL,
-  `museumsVisited` VARCHAR(128) NULL,
   PRIMARY KEY (`visitorNo`),
   INDEX `visitorNo_idx` (`visitorNo` ASC))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `museum`.`ArtifactDetails` (
-  `name` VARCHAR(64) NOT NULL,
+`name` VARCHAR(64) NOT NULL,
   PRIMARY KEY (`name`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC),
   INDEX `name_idx` (`name` ASC))
 ENGINE = InnoDB;
 
@@ -60,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `museum`.`FavoriteDetails` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `museum`. `Theme` (
-  `artifactTheme` VARCHAR(64),
   `artifactName` VARCHAR(64) NOT NULL,
+  `artifactTheme` VARCHAR(64),
   PRIMARY KEY (`artifactName`),
   INDEX `artifactName_idx` (`artifactName` ASC),
   CONSTRAINT `artifactName_Theme`
@@ -73,8 +71,8 @@ CREATE TABLE IF NOT EXISTS `museum`. `Theme` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `museum`. `Country` (
-  `artifactCountry` VARCHAR(64),
   `artifactName` VARCHAR(64) NOT NULL,
+  `artifactCountry` VARCHAR(64),
   PRIMARY KEY (`artifactName`),
   INDEX `artifactName_idx` (`artifactName` ASC),
   CONSTRAINT `artifactName_Country`
@@ -87,8 +85,8 @@ ENGINE = InnoDB;
 
 
 CREATE TABLE IF NOT EXISTS `museum`. `Time` (
-  `timePeriod` VARCHAR(64), -- left as a char since time period wont be an exact date
   `artifactName` VARCHAR(64) NOT NULL,
+  `timePeriod` VARCHAR(64),
   PRIMARY KEY (`artifactName`),
   INDEX `artifactName_idx` (`artifactName` ASC),
   CONSTRAINT `artifactName_Time` -- constraint name can't be same as primary key name
@@ -123,14 +121,14 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `museum`. `ExpositionDetails` (
   `dateAdded` DATE,
   `dateRemoved` DATE,
-  `expositionNo` INT NOT NULL,
+  `expoName` VARCHAR(64) NOT NULL,
   `artifactNo` INT NOT NULL,
-  PRIMARY KEY (`expositionNo`, `artifactNo`),
+  PRIMARY KEY (`expoName`, `artifactNo`),
   INDEX `artifactNo_idx` (`artifactNo` ASC),
-  INDEX `expositionNo_idx` (`expositionNo` ASC),
-  CONSTRAINT `expositionNo`
-	FOREIGN KEY (`expositionNo`)
-	REFERENCES `museum`. `Exposition` (`expositionNo`)
+  INDEX `exposition_idx` (`expoName` ASC),
+  CONSTRAINT `expoName`
+	FOREIGN KEY (`expoName`)
+	REFERENCES `museum`. `Exposition` (`name`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `artifactNo`
@@ -168,15 +166,14 @@ CREATE TABLE IF NOT EXISTS `museum`. `Artifact` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `museum`. `Exposition` (
-  `expositionNo` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(64) NOT NULL,
   `description` VARCHAR(120),
   `startDate` DATE,
   `endDate` DATE,
   `museumNo` INT,
   `curatorNo` INT,
-  PRIMARY KEY (`expositionNo`),
-  INDEX `expositionNo_idx` (`expositionNo` ASC),
+  PRIMARY KEY (`name`),
+  INDEX `exposition_idx` (`name` ASC),
   INDEX `curatorNo_idx` (`curatorNo` ASC),
   INDEX `museumNo_idx` (`museumNo` ASC),
   CONSTRAINT `curatorNo`
