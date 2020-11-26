@@ -6,6 +6,13 @@ SELECT current_date(), v.visitorNo, 'Ancient Clothes'
 FROM visitor v
 WHERE v.name = 'Aitana Savage';
 
+
+-- update all artifact themes with 'Rocks' to 'Geology'
+UPDATE theme
+SET artifactTheme = 'Geology'
+WHERE artifactTheme = 'Rocks';
+
+
 -- see artifacts
 SELECT f.*, v.name, v.email
 FROM favoritedetails f
