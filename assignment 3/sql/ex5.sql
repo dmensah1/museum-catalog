@@ -32,3 +32,17 @@ WHERE endDate >
 (SELECT endDate
 FROM exposition
 WHERE name = 'Modern Day Art');
+
+
+-- Find the name of curators (if they exist) who are in charge of expositions with start dates before Jan 01 2016
+SELECT name
+FROM curator
+WHERE EXISTS 
+(SELECT curatorNo 
+	FROM Exposition 
+	WHERE curator.curatorNo = Exposition.curatorNo AND startDate < '2016-01-01');
+
+-- Visitor's who have first names beginning with A and last names ending with z
+SELECT name
+FROM visitor
+WHERE name LIKE 'A%z';
