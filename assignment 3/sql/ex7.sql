@@ -1,13 +1,11 @@
-USE `museum` ;
+CREATE VIEW artifactsByTimePeriods 
+AS SELECT a.artifactNo, a.name, tp.timePeriod
+FROM artifact a
+JOIN time tp on tp.artifactName = a.name
+ORDER BY timePeriod;
 
--- create View for user favorites
-CREATE VIEW visitorFavorites
-AS SELECT f.dateAdded, f.artifactName, v.name
-FROM favoritedetails f
-JOIN visitor v on v.visitorNo = f.visitorNo;
+SELECT * 
+FROM artifactsbytimeperiods;
 
-SELECT *
-FROM visitorFavorites
-WHERE dateAdded >= DATE('2015-12-20');
-
-DROP VIEW visitorFavorites;
+INSERT INTO artifactsbytimeperiods
+VALUES('999', 'Piano', '17th Century');
